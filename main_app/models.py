@@ -8,10 +8,19 @@ class Resume(models.Model):
     github = models.URLField(max_length=200)
     qualifications = models.ManyToManyField('Qualification', related_name='resume')
 
+    def __unicode__(self):
+        return u'{0}'.format(self.name)
+
 class Qualification(models.Model):
     name = models.CharField(max_length=50)
+
+    def __unicode__(self):
+        return u'{0}'.format(self.name)
 
 class Experience(models.Model):
     job_title = models.CharField(max_length=100)
     duties = models.CharField(max_length=1000)
     resume = models.ForeignKey('Resume')
+
+    def __unicode__(self):
+        return u'{0}'.format(self.job_title)
